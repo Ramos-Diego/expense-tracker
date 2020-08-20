@@ -1,9 +1,5 @@
 import React from 'react'
 
 export default function Header() {
-  return (
-    <div>
-      Expense Tracker
-    </div>
-  )
+  return <h2>Expense Tracker</h2>
 }
