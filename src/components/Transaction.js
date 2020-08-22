@@ -6,10 +6,10 @@ export default function Transaction({ item }) {
   const sign = item.amount < 0 ? '-' : '+'
 
   return (
-    <li className={sign === '-' ? 'minus' : 'plus' }>
+    <dt className={sign === '-' ? 'minus' : 'plus'}>
+      <button onClick={() => deleteTransaction(item.id)} className="delete-btn"><span>&#10006;</span></button>
       {item.text}
-      <span>{sign}${Math.abs(item.amount)}</span>
-      <button onClick={() => deleteTransaction(item.id)} className="delete-btn">x</button>
-    </li>
+      <span className="amount">{sign}${Math.abs(item.amount)}</span>
+    </dt>
   )
 }

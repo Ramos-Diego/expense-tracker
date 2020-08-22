@@ -1,0 +1,38 @@
+body { display: grid; }
+
+div#root {
+  display: grid;
+  align-content: space-between;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+
+  align-items: center;
+  position: sticky;
+  top: 0;
+  
+  height: 55px;
+  padding: 0 8px;
+  
+  border-bottom: 2px solid var(--color-primary);
+  background-color: var(--background);
+}
+
+main {
+  display: grid;
+  padding: 5px 10px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+
+  align-items: center;
+  
+  height: 55px;
+  padding: 0 8px;
+  
+  border-top: 2px solid var(--color-primary);
+}

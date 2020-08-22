@@ -1,0 +1,71 @@
+@import '../parts/_classes.css';
+@import '../parts/_grid.css';
+@import '../parts/_mediaQueries.css';
+@import '../parts/_semantic.css';
+
+:root {
+
+  --background: var(--color-contrast-lower);
+  --contrast: var(--color-white);
+  --hover: var(--color-contrast-medium);
+
+  --text-main: var(--color-contrast-higher);
+  --text-bright: var(--color-black);
+  --text-muted: var(--color-contrast-medium);
+  --text-selection: var(--color-primary-light);
+  --form-border: var(--color-black);
+
+  --primary: var(--color-primary-light);
+  --focus: var(--color-primary-lighter);
+  --links: var(--color-primary);
+  --border: var(--color-primary);
+
+  --animation-duration: 0.1s;
+  --code: var(--color-black);
+  --variable: var(--color-accent-dark);
+  --highlight: var(--color-warning);
+  --error: var(--color-error);
+  
+  /* COLORS */
+  --color-bg: hsl(0, 0%, 98%);
+  --color-contrast-lower: hsl(0, 0%, 95%);
+  --color-contrast-low: hsl(240, 1%, 83%);
+  --color-contrast-medium: hsl(240, 1%, 48%);
+  --color-contrast-high: hsl(240, 4%, 20%);
+  --color-contrast-higher: hsl(240, 8%, 12%);
+  
+  /* main */
+  --color-primary-darker: hsl(220, 90%, 42%);
+  --color-primary-dark: hsl(220, 90%, 49%);
+  --color-primary: hsl(220, 90%, 56%);
+  --color-primary-light: hsl(220, 90%, 63%);
+  --color-primary-lighter: hsl(220, 90%, 70%);
+  
+  --color-accent-darker: hsl(349, 75%, 36%);
+  --color-accent-dark: hsl(349, 75%, 44%);
+  --color-accent: hsl(349, 75%, 51%);
+  --color-accent-light: hsl(349, 75%, 59%);
+  --color-accent-lighter: hsl(349, 75%, 67%);
+  
+  --color-black: hsl(0, 0%, 0%);
+  --color-white: hsl(0, 0%, 100%);
+  
+  /* feedback */
+  --color-warning-darker: hsl(46, 100%, 47%);
+  --color-warning-dark: hsl(46, 100%, 50%);
+  --color-warning: hsl(46, 100%, 61%);
+  --color-warning-light: hsl(46, 100%, 71%);
+  --color-warning-lighter: hsl(46, 100%, 80%);
+  
+  --color-success-darker: hsl(94, 48%, 42%);
+  --color-success-dark: hsl(94, 48%, 48%);
+  --color-success: hsl(94, 48%, 56%);
+  --color-success-light: hsl(94, 48%, 65%);
+  --color-success-lighter: hsl(94, 48%, 74%);
+  
+  --color-error-darker: hsl(349, 75%, 36%);
+  --color-error-dark: hsl(349, 75%, 44%);
+  --color-error: hsl(349, 75%, 51%);
+  --color-error-light: hsl(349, 75%, 59%);
+  --color-error-lighter: hsl(349, 75%, 67%);
+}

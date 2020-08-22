@@ -1,0 +1,121 @@
+.btn {
+  display: block;
+  color: var(--primary);
+  background: var(--background);
+  
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: bold;
+  
+  width: auto;
+  margin: 6px 0px 12px 0px;
+  padding: 10px;
+  
+  border: 2px solid var(--primary);
+  border-radius: 5px;
+  outline: none;
+}
+
+/* ONLY USE BUTTONS FOR FORM SUBMITTIONS */
+.btn:hover, .btn:focus {
+  color: var(--background);
+  background-color: var(--primary);
+}
+
+/* Simulates downward movement of the button */
+.btn:active { transform: translateY(2px); }
+
+.inc-exp-container {
+  display: flex;
+  background-color: var(--contrast);
+  padding: 20px 0px;
+  margin: 20px 0;
+  border-radius: 3px;
+}
+
+.inc-exp-container > div {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.inc-exp-container > div:first-of-type {
+  border-right: 1px solid #dedede;
+}
+
+.money {
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  margin: 5px 0;
+}
+
+.money.plus {
+  color: #2ecc71;
+}
+
+.money.minus {
+  color: #c0392b;
+}
+
+.list { 
+  padding-right: 5px;
+  max-height: 230px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.list dt {
+  background-color: var(--contrast);
+  box-shadow: var(--box-shadow);
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: auto 1fr auto;
+  border-radius: 3px;
+  
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.amount {
+  text-align: end;
+}
+
+.list dt.plus {
+  border-right: 5px solid #2ecc71;
+}
+
+.list dt.minus {
+  border-right: 5px solid #c0392b;
+}
+
+.delete-btn {
+  margin-right: 7px;
+  background-color: #e74c3c;
+  border: 0;
+  color: #fff;
+  padding: 0px 5px;
+  border-radius: 3px;
+  opacity: 0;
+}
+
+.list dt:hover .delete-btn {
+  opacity: 1;
+}
+
+.input-error {
+  color: var(--error);
+  padding: 5px 7px;
+  border: 2px solid var(--error);
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.amount {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.expense {
+  display: block;
+  align-self: center;
+  justify-self: center;
+}
