@@ -1,25 +1,36 @@
 import React from 'react'
-import './css/builds/light.css'
+// import './css/builds/light.css'
+// import './css/builds/test.css'
 import Header from './components/Header'
 import Balance from './components/Balance'
 import IncomeExpenses from './components/IncomeExpenses'
 import TransactionList from './components/TransactionList'
 import AddTransaction from './components/AddTransaction'
 import { GlobalProvider } from './context/GlobalState'
+import { Container } from '@material-ui/core';
 
-function App() {
+const containerStyles = {
+  marginTop: '15px',
+  display: 'flex',
+  flexDirection: 'column',
+  // alignItems: 'center'
+}
+
+export default function App() {
   return (
     // GlobalProvider becomes <div id="root">
     <GlobalProvider>
-      <main>
+      <Container
+        component="main"
+        maxWidth="xs"
+        style={containerStyles}
+      >
         <Header />
         <Balance />
         <IncomeExpenses />
         <TransactionList />
         <AddTransaction />
-      </main>
+      </Container>
     </GlobalProvider>
   )
 }
-
-export default App

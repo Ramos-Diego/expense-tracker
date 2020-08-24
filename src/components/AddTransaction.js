@@ -1,9 +1,35 @@
 import React, { useContext } from 'react'
 import { useForm } from "react-hook-form"
 import { GlobalContext } from '../context/GlobalState'
+import {
+  Button,
+  Checkbox,
+  TextField,
+  Typography,
+  Grid,
+  InputAdornment,
+  FormControlLabel,
+  makeStyles,
+  Box
+} from '@material-ui/core'
+import { MoneyOff } from '@material-ui/icons'
+
+const useStyles = makeStyles(theme => ({
+  submit: {
+    margin: theme.spacing(2, 0, 1),
+  },
+  errorAlert: {
+    padding: theme.spacing(1),
+    margin: theme.spacing(1, 0),
+    border: `2px solid ${theme.palette.error.light}`,
+    borderRadius: theme.shape.borderRadius,
+    color: theme.palette.error.main,
+  }
+}))
 
 export default function AddTransaction() {
-  const { register, handleSubmit, errors } = useForm();
+  const classes = useStyles()
+  const { register, handleSubmit, errors } = useForm()
   const { addTransaction } = useContext(GlobalContext)
 
   function onSubmit(data) {
@@ -18,40 +44,68 @@ export default function AddTransaction() {
 
   return (
     <>
-      <h3>Add new transaction</h3>
+      <Typography variant="h6" gutterBottom>
+        Add new transaction
+      </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label htmlFor="text">Expense</label>
-          <input
-            name="text"
-            placeholder="Enter the name of the expense..."
-            ref={register({ required: true })} />
-          {errors.text && <p className="input-error">The expense's name is required.</p>}
-        </div>
-
-        <div className="amount">
-          <div>
-            <label htmlFor="expense">Expense</label>
-            <input
-              type="checkbox"
-              name="expense"
-              className="expense"
-              ref={register({ required: true })} />
-          </div>
-          <div>
-            <label htmlFor="amount">Amount</label>
-            <input
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              name="text"
+              label="Name"
+              variant="outlined"
+              size="small"
+              fullWidth
+              inputRef={register({ required: true })}
+            />
+            {errors.text && <Box className={classes.errorAlert}>The expense's name is required.</Box>}
+          </Grid>
+          <Grid item xs={3}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  type="checkbox"
+                  name="expense"
+                  icon={<MoneyOff />}
+                  checkedIcon={<MoneyOff />}
+                  inputRef={register}
+                />}
+              label="Expense"
+            />
+          </Grid>
+          <Grid item xs={9}>
+            <TextField
               name="amount"
+              fullWidth
               inputMode="decimal"
-              placeholder="Enter the dollar amount..."
-              ref={register({ required: true, pattern: /^[0-9]+(\.[0-9]{1,2})?$/ })} />
-            {errors.amount && errors.amount.type === "pattern" && <p className="input-error">Only insert digits, 0 through 9.</p>}
-            {errors.amount && errors.amount.type === "required" && <p className="input-error">The amount is required.</p>}
-          </div>
-        </div>
-
-
-        <button className="btn">Add transaction</button>
+              label="Amount"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    $
+                  </InputAdornment>
+                ),
+              }}
+              inputRef={register({ 
+                required: true,
+                // pattern: /^[0-9]+(\.[0-9]{1,2})?$/
+              })}
+              variant="outlined"
+              size="small"
+            />
+            {/* {errors.amount && errors.amount.type === "pattern" && <Box className={classes.errorAlert}>Only insert digits, 0 through 9.</Box>} */}
+            {errors.amount && errors.amount.type === "required" && <Box className={classes.errorAlert}>The amount is required.</Box>}
+          </Grid>
+        </Grid>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+        >
+          Add transaction
+        </Button>
       </form>
     </>
   )
