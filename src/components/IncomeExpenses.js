@@ -3,7 +3,6 @@ import { GlobalContext } from '../context/GlobalState'
 import {
   Typography,
   Grid,
-  Box,
   Container,
   makeStyles
 } from '@material-ui/core'
@@ -36,10 +35,10 @@ export default function IncomeExpenses() {
     .reduce((acc, item) => (acc += item), 0)
     .toFixed(2)
 
-  const expense = (
-    amounts.filter(item => item < 0)
-      .reduce((acc, item) => (acc += item), 0) * -1
-  ).toFixed(2)
+  const expense = (amounts
+    .filter(item => item < 0)
+    .reduce((acc, item) => (acc += item), 0) * -1)
+    .toFixed(2)
 
   return (
     <Container maxWidth="sm" className={classes.container}>
@@ -57,7 +56,7 @@ export default function IncomeExpenses() {
         </Grid>
         <Grid item xs={6}>
           <Typography variant="h6" align='center' gutterBottom>
-            Expense
+            Expenses
           </Typography>
           <Typography align='center' variant="body1" className={classes.expense}>
             -${expense}

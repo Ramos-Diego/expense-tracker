@@ -1,18 +1,19 @@
 import React, { useContext } from 'react'
-import { useForm } from "react-hook-form"
+import { useForm, Controller } from "react-hook-form"
 import { GlobalContext } from '../context/GlobalState'
 import {
   Button,
-  Checkbox,
   TextField,
   Typography,
   Grid,
   InputAdornment,
-  FormControlLabel,
   makeStyles,
-  Box
+  Box,
+  FormControl,
+  Select,
+  MenuItem,
+  InputLabel
 } from '@material-ui/core'
-import { MoneyOff } from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
   submit: {
@@ -24,28 +25,31 @@ const useStyles = makeStyles(theme => ({
     border: `2px solid ${theme.palette.error.light}`,
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.error.main,
-  }
+  },
+  moneyType: {
+    padding: theme.spacing(0, 'auto')
+  },
 }))
 
 export default function AddTransaction() {
   const classes = useStyles()
-  const { register, handleSubmit, errors } = useForm()
+  const { register, handleSubmit, errors, control } = useForm()
   const { addTransaction } = useContext(GlobalContext)
 
   function onSubmit(data) {
     const newTransaction = {
       id: Math.floor(Math.random() * 100000000),
       text: data.text,
-      amount: +data.amount
+      amount: data.type === '+' ? +data.amount : (data.amount * -1),
+      type: data.type
     }
-    console.log(data)
     addTransaction(newTransaction)
   }
 
   return (
     <>
       <Typography variant="h6" gutterBottom>
-        Add new transaction
+        New transaction
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>
@@ -60,20 +64,17 @@ export default function AddTransaction() {
             />
             {errors.text && <Box className={classes.errorAlert}>The expense's name is required.</Box>}
           </Grid>
-          <Grid item xs={3}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  type="checkbox"
-                  name="expense"
-                  icon={<MoneyOff />}
-                  checkedIcon={<MoneyOff />}
-                  inputRef={register}
-                />}
-              label="Expense"
-            />
+          <Grid item xs={4}>
+            <FormControl fullWidth variant="outlined" size="small">
+              <InputLabel>Type</InputLabel>
+              <Controller as={Select} name="type" 
+                label="Type" control={control} defaultValue="+" >
+                <MenuItem value={'+'}>Income</MenuItem>
+                <MenuItem value={'-'}>Expense</MenuItem>
+              </Controller>
+            </FormControl>
           </Grid>
-          <Grid item xs={9}>
+          <Grid item xs={8}>
             <TextField
               name="amount"
               fullWidth
@@ -86,14 +87,14 @@ export default function AddTransaction() {
                   </InputAdornment>
                 ),
               }}
-              inputRef={register({ 
+              inputRef={register({
                 required: true,
-                // pattern: /^[0-9]+(\.[0-9]{1,2})?$/
+                pattern: /^[0-9]+(\.[0-9]{1,2})?$/
               })}
               variant="outlined"
               size="small"
             />
-            {/* {errors.amount && errors.amount.type === "pattern" && <Box className={classes.errorAlert}>Only insert digits, 0 through 9.</Box>} */}
+            {errors.amount && errors.amount.type === "pattern" && <Box className={classes.errorAlert}>Only insert digits, 0 through 9.</Box>}
             {errors.amount && errors.amount.type === "required" && <Box className={classes.errorAlert}>The amount is required.</Box>}
           </Grid>
         </Grid>

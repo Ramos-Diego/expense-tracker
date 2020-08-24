@@ -10,10 +10,13 @@ export default function Balance() {
 
   return (
     <>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h4" align='center' gutterBottom>
+        Expense Tracker
+      </Typography>
+      <Typography gutterBottom>
         Your balance:
       </Typography>
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h4" gutterBottom>
         ${total}
       </Typography>
     </>

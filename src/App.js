@@ -1,7 +1,6 @@
 import React from 'react'
 // import './css/builds/light.css'
 // import './css/builds/test.css'
-import Header from './components/Header'
 import Balance from './components/Balance'
 import IncomeExpenses from './components/IncomeExpenses'
 import TransactionList from './components/TransactionList'
@@ -25,7 +24,6 @@ export default function App() {
         maxWidth="xs"
         style={containerStyles}
       >
-        <Header />
         <Balance />
         <IncomeExpenses />
         <TransactionList />

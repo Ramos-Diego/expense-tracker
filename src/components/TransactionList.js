@@ -22,23 +22,22 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.grey[200],
     borderRadius: theme.shape.borderRadius,
   },
-  // TODO: Add logic for expense vs income
-  incomeListItem: {
+  listItem: {
     margin: theme.spacing(1, 0),
-    backgroundColor: green[100],
+    backgroundColor: theme.palette.grey[50],
     borderRadius: theme.shape.borderRadius,
   },
   expenseListItem: {
-    margin: theme.spacing(1, 0),
-    backgroundColor: red[100],
-    borderRadius: theme.shape.borderRadius,
+    color: red[600],
+  },
+  incomeListItem: {
+    color: green[600],
   },
 }))
 
 export default function TransactionList() {
   const classes = useStyles()
   const { transactions, deleteTransaction } = useContext(GlobalContext)
-  // const sign = item.amount < 0 ? '-' : '+'
 
   return (
     <>
@@ -49,10 +48,11 @@ export default function TransactionList() {
         <Grid item xs={12}>
           <List dense component="nav" className={classes.list}>
             {transactions.map(item => (
-              <ListItem key={item.id} className={classes.incomeListItem}>
+              <ListItem key={item.id} className={classes.listItem}>
                 <ListItemText
                   primary={item.text}
-                  secondary={`$ ${item.amount}`}
+                  classes={{ secondary: item.type === '+' ? classes.incomeListItem : classes.expenseListItem }}
+                  secondary={`${item.type}$${Math.abs(item.amount).toFixed(2)}`}
                 />
                 <ListItemSecondaryAction>
                   <IconButton onClick={() => deleteTransaction(item.id)} edge="end">
