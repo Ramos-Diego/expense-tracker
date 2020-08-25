@@ -47,6 +47,7 @@ export default function TransactionList() {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <List dense component="nav" className={classes.list}>
+            {/* Generate all the list items from the GlobalContext */}
             {transactions.map(item => (
               <ListItem key={item.id} className={classes.listItem}>
                 <ListItemText
@@ -54,6 +55,7 @@ export default function TransactionList() {
                   classes={{ secondary: item.type === '+' ? classes.incomeListItem : classes.expenseListItem }}
                   secondary={`${item.type}$${Math.abs(item.amount).toFixed(2)}`}
                 />
+                {/* Delete button */}
                 <ListItemSecondaryAction>
                   <IconButton onClick={() => deleteTransaction(item.id)} edge="end">
                     <DeleteIcon />

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useForm, Controller } from "react-hook-form"
+import { useForm, Controller } from 'react-hook-form'
 import { GlobalContext } from '../context/GlobalState'
 import {
   Button,
@@ -33,13 +33,19 @@ const useStyles = makeStyles(theme => ({
 
 export default function AddTransaction() {
   const classes = useStyles()
+  // Use react-hook-form to simplify forms
   const { register, handleSubmit, errors, control } = useForm()
   const { addTransaction } = useContext(GlobalContext)
 
   function onSubmit(data) {
+    // data contains the use input
     const newTransaction = {
+      // Generate a random id to comply with React's mapping
+      // This can be improved using UUID
       id: Math.floor(Math.random() * 100000000),
       text: data.text,
+      // Depending on Income or Expense, make number positive or negative
+      // Remeber all user input is returned as a string regardless of the HTML
       amount: data.type === '+' ? +data.amount : (data.amount * -1),
       type: data.type
     }
@@ -62,13 +68,21 @@ export default function AddTransaction() {
               fullWidth
               inputRef={register({ required: true })}
             />
+            {/* The Alert component should be used once it enters the stable release. */}
             {errors.text && <Box className={classes.errorAlert}>The expense's name is required.</Box>}
           </Grid>
           <Grid item xs={4}>
             <FormControl fullWidth variant="outlined" size="small">
               <InputLabel>Type</InputLabel>
-              <Controller as={Select} name="type" 
-                label="Type" control={control} defaultValue="+" >
+              {/* The controller element is provided by react-hook-form */}
+              {/* It accomodates special input fields like this one. */}
+              <Controller
+                as={Select}
+                name="type"
+                label="Type"
+                control={control}
+                defaultValue="+"
+              >
                 <MenuItem value={'+'}>Income</MenuItem>
                 <MenuItem value={'-'}>Expense</MenuItem>
               </Controller>
@@ -89,6 +103,7 @@ export default function AddTransaction() {
               }}
               inputRef={register({
                 required: true,
+                // This regex allows for currency numbers 12.99
                 pattern: /^[0-9]+(\.[0-9]{1,2})?$/
               })}
               variant="outlined"

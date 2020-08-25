@@ -14,9 +14,11 @@ export const GlobalContext = createContext(initialState)
 // The global provider gives children elements access to 
 // the global context
 export const GlobalProvider = ({ children }) => {
-  
+  // A reducer function enables the consumption and modification of states
   const [state, dispatch] = useReducer(AppReducer, initialState)
 
+  // The dispatch functions are passed to the global provider
+  // This way they can be called from any element
   function deleteTransaction(id) {
     dispatch({
       type: 'DELETE_TRANSACTION',
@@ -24,6 +26,8 @@ export const GlobalProvider = ({ children }) => {
     })
   }
 
+  // The 'type' is a convention to identify the function
+  // in a switch statement. The payload is optional for dispatch
   function addTransaction(item) {
     dispatch({
       type: 'ADD_TRANSACTION',

@@ -11,7 +11,7 @@ export default function Balance() {
   return (
     <>
       <Typography variant="h4" align='center' gutterBottom>
-        Expense Tracker
+        Finance Tracker
       </Typography>
       <Typography gutterBottom>
         Your balance:

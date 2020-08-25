@@ -1,6 +1,4 @@
 import React from 'react'
-// import './css/builds/light.css'
-// import './css/builds/test.css'
 import Balance from './components/Balance'
 import IncomeExpenses from './components/IncomeExpenses'
 import TransactionList from './components/TransactionList'
@@ -12,7 +10,6 @@ const containerStyles = {
   marginTop: '15px',
   display: 'flex',
   flexDirection: 'column',
-  // alignItems: 'center'
 }
 
 export default function App() {
