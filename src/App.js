@@ -14,7 +14,6 @@ const containerStyles = {
 
 export default function App() {
   return (
-    // GlobalProvider becomes <div id="root">
     <GlobalProvider>
       <Container
         component="main"

@@ -92,7 +92,7 @@ export default function AddTransaction() {
             <TextField
               name="amount"
               fullWidth
-              inputMode="decimal"
+              inputProps={{inputMode: "decimal"}}
               label="Amount"
               InputProps={{
                 startAdornment: (
